@@ -2,9 +2,9 @@ import { Card } from "antd";
 import Meta from "antd/lib/card/Meta";
 import Paragraph from "antd/lib/typography/Paragraph";
 import React, { useState, useEffect, useRef } from "react";
-import ContentEditable from "react-contenteditable";
+// import ContentEditable from "react-contenteditable";
 import { PostType } from "../../models/Post";
-import { AttachmentFilePin } from "../AttachmentPin";
+// import { AttachmentFilePin } from "../AttachmentPin";
 import styles from "./ProposalCard.module.scss";
 
 type Props = {
@@ -16,28 +16,28 @@ export const ProposalCard = ({ post, onDelete, onEdit }: Props) => {
   const [editActive, setEditActiv] = useState(false);
   const [postState, setPostState] = useState(post);
 
-  const deletePostHandler = () => {
-    const decision = window.confirm("Вы уверены, что хотите удалить пост?");
-    if (decision) {
-      onDelete(postState._id);
-    }
-  };
+  // const deletePostHandler = () => {
+  //   const decision = window.confirm("Вы уверены, что хотите удалить пост?");
+  //   if (decision) {
+  //     onDelete(postState._id);
+  //   }
+  // };
 
-  const clickEditPostHandler = () => {
-    setEditActiv(true);
-  };
+  // const clickEditPostHandler = () => {
+  //   setEditActiv(true);
+  // };
 
-  const onClickSendEditedPostHandler = () => {
-    if (
-      postState.proposal === post.proposal &&
-      postState.todayState === post.todayState
-    ) {
-      setEditActiv(false);
-      return;
-    }
-    onEdit(postState);
-    setEditActiv(false);
-  };
+  // const onClickSendEditedPostHandler = () => {
+  //   if (
+  //     postState.proposal === post.proposal &&
+  //     postState.todayState === post.todayState
+  //   ) {
+  //     setEditActiv(false);
+  //     return;
+  //   }
+  //   onEdit(postState);
+  //   setEditActiv(false);
+  // };
 
   const cancelEditionHandler = () => {
     setPostState(post);

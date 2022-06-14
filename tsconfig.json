@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,7 +21,8 @@
     "**/*.ts",
     "**/*.tsx",
     "helpers/cookieManage.ts",
-    "pages/_document.js"
-, "next.config.js"  ],
+    "pages/_document.js",
+    "next.config.js"
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-// import { Button, Modal, TextInput } from "react-materialize";
 import { Modal, Button, Form, Checkbox, Input } from "antd";
 
 import { AuthContext } from "../AuthContextProvider/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 import { useMessage } from "../../hooks/message.hook";
 import { UserType } from "../../models/User";
-import { useCookies } from "../../helpers/cookieManage";
 import styles from "./Login.module.scss";
 
 export const LoginComponent = () => {

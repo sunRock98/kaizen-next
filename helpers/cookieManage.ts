@@ -1,10 +1,18 @@
-export const setCookie = function (name, value, options = {}) {
+type Options = {
+  expires?: Date | number | string;
+  path?: string;
+  domain?: string;
+  secure?: boolean;
+  "max-age"?: number;
+};
+
+export const setCookie = function (name, value, options: Options = {}) {
   options = {
     path: "/",
     ...options,
   };
 
-  if (options.expires instanceof Date) {
+  if (options?.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
 

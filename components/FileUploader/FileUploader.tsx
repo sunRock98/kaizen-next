@@ -1,5 +1,5 @@
 import { InboxOutlined } from "@ant-design/icons";
-import { Form, Upload, UploadRequestOption } from "antd";
+import { Form, Upload } from "antd";
 import { DraggerProps } from "antd/lib/upload";
 import { UploadFile } from "antd/lib/upload/interface";
 import React, { useState } from "react";
@@ -21,27 +21,27 @@ export const FileUploader = () => {
   const uploadFile: DraggerProps["customRequest"] = (uploadRequest) => {
     const { file, onSuccess, onError } = uploadRequest;
     const fr = new FileReader();
-    fr.readAsArrayBuffer(file);
+    fr.readAsArrayBuffer(file as Blob);
     fr.onload = (f) => {
       const url = process.env.NEXT_PUBLIC_GOOGLE_DRIVE; // <--- Please set the URL of Web Apps.
 
       const qs = new URLSearchParams({
-        filename: file?.name,
-        mimeType: file?.type,
+        filename: (file as { name: string; type: string })?.name,
+        mimeType: (file as { name: string; type: string })?.type,
       });
-      const file = fetch(`${url}?${qs}`, {
+      fetch(`${url}?${qs}`, {
         method: "POST",
-        body: JSON.stringify([...new Int8Array(f.target.result)]),
+        body: JSON.stringify([
+          ...new Int8Array(f.target.result as ArrayBuffer),
+        ]),
       })
         .then((res) => {
           console.log({ res });
           return res.json();
         })
         .then((file) => {
-          //   setFileList((prev) => [...prev, { ...file, status: "done" }]);
           onSuccess("Ok", file);
           form.setFieldsValue({ fileList: [...files, file] });
-          //   form.setFieldsValue({ ...values, fileList: [...files, file] });
           console.log(file);
         }) // <--- You can retrieve the returned value here.
         .catch((err) => {
@@ -52,7 +52,6 @@ export const FileUploader = () => {
 
   return (
     <Upload.Dragger
-
       defaultFileList={files}
       name="fileList"
       onChange={(info) => {
